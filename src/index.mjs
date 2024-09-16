@@ -5,9 +5,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const mockUsers = [
-  { id: "1", username: "Shalimar", displayname: "sh" },
-  { id: "2", username: "jack", displayname: "ja" },
-  { id: "3", username: "ricky", displayname: "rick" },
+  { id: 1, username: "Shalimar", displayname: "sh" },
+  { id: 2, username: "jack", displayname: "ja" },
+  { id: 3, username: "ricky", displayname: "rick" },
 ];
 
 app.get("/", (request, response) => {
@@ -21,7 +21,6 @@ app.get("/api/users", (request, response) => {
 app.get("/api/users/:id", (request, response) => {
   console.log(request.params);
   const parsedId = parseInt(request.params.id);
-  console.log(parsedId);
   if (isNaN(parsedId))
     return response.status(400).send({ msg: "Bad Request. Invalid ID." });
   const findUser = mockUsers.find((user) => user.id === parsedId);
