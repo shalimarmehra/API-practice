@@ -25,7 +25,7 @@ app.get("/api/users", (request, response) => {
       mockUsers.filter((user) => user[filter].includes(value))
     );
 });
-
+// User ID
 app.get("/api/users/:id", (request, response) => {
   console.log(request.params);
   const parsedId = parseInt(request.params.id);
