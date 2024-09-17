@@ -15,7 +15,15 @@ app.get("/", (request, response) => {
 });
 
 app.get("/api/users", (request, response) => {
-  response.status(201).send(mockUsers);
+  console.log(request.query);
+  const {
+    query: { filter, value },
+  } = request;
+  if (!filter && !value) return response.send(mockUsers);
+  if (filter && !value)
+    return response.send(
+      mockUsers.filter((user) => user[filter].includes(value))
+    );
 });
 
 app.get("/api/users/:id", (request, response) => {
@@ -38,4 +46,4 @@ app.listen(PORT, () => {
 
 // localhost:3000
 // localhost:3000/users
-// localhost:3000/products
+// localhost:3000/products?key=value&key2=value2
